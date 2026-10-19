@@ -1,33 +1,54 @@
 pipeline{
     // agent any - it will run job in master
     agent{
-        label 'agent-1'
+        node{
+            label 'agent-1'
+        }
     } // asking jenkins to run pipeline in agent-1 node
+    environment{
+        // environment variable declaration, which can be accessed across all stages
+        Course = 'DevOps'
+        Module = 'Jenkins'
+    }
     stages{
         stage('Build'){
             steps{
-                echo 'Building Job'
+                script{
+                    sh """
+                        echo 'Building Job'
+                        echo 'Course name is ${Course}'
+                    """
+                }
+                
             }
         }
         stage('Test'){
             steps{
-                echo 'testing job'
+                script{
+                    sh """
+                        echo 'testing job'
+                    """
+                }
             }
         }
         stage('Deploy'){
             steps{
-                echo 'Deploying Job'
+                script{
+                    sh """
+                        echo 'Deploying Job'
+                    """
+                }
             }
         }
     }
-    post{
-        always{
+    post{ // post deployment action - execute after above stages 
+        always{ // this block will always execute after all stages whether success or failure
             cleanWs()
         }
-        success{
+        success{ // if all stages are successful then execute this block
             echo 'succeeded'
         }
-        failure{
+        failure{ // if any stage fails then execute this block
             echo 'failed'
         }
     }
