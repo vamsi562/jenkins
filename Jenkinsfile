@@ -20,4 +20,15 @@ pipeline{
             }
         }
     }
+    post{
+        always{
+            cleanWS()
+        }
+        success{
+            echo 'succeeded'
+        }
+        failure{
+            echo 'failed'
+        }
+    }
 }

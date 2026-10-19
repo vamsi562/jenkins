@@ -1,14 +1,22 @@
 # Jenkins Installation
 ```
+        # Add the clean repo configuration file
     sudo curl -o /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/rpm-stable/jenkins.repo
-    # Add required dependencies for the jenkins package
-    sudo rpm --import https://jenkins.io
+
+    # Import the official Jenkins signing key
+    sudo rpm --import https://pkg.jenkins.io/rpm-stable/jenkins.io-2026.key
     sudo yum install fontconfig java-21-openjdk -y
+
+    # Install Jenkins
     sudo yum install jenkins -y
+
     sudo systemctl daemon-reload
+    # Enable the service to start automatically on system boot
     sudo systemctl enable jenkins
+
+    # Start the Jenkins engine
     sudo systemctl start jenkins
-    sudo systemctl status jenkins
+
 ```
 
 growpart /dev/nvme0n1 4

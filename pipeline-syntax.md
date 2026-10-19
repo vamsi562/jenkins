@@ -18,5 +18,7 @@
 
 ## jenkins plugins
 
+**settings -> plugins -> install from here**
+
 - stage view -> show piplelines in stages
 - 
