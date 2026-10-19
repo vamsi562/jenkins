@@ -8,7 +8,7 @@ pipeline{
     environment{
         // environment variable declaration, which can be accessed across all stages
         Course = 'DevOps'
-        Module = 'Jenkins'
+        Topic = 'Jenkins'
     }
     stages{
         stage('Build'){
