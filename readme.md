@@ -10,3 +10,9 @@
     sudo systemctl start jenkins
     sudo systemctl status jenkins
 ```
+
+growpart /dev/nvme0n1 4
+lvextend -L +15G /dev/mapper/RootVG-rootVol
+lvextend -L +15G /dev/mapper/RootVG-homeVol
+xfs_growfs /
+xfs_growfs /home

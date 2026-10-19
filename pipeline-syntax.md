@@ -15,3 +15,8 @@
             }
         }
 ```
+
+## jenkins plugins
+
+- stage view -> show piplelines in stages
+- 
