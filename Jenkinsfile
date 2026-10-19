@@ -15,7 +15,7 @@ pipeline{
         disableConcurrentBuilds() // if any build is running then next build will be in queue and will wait for previous build to complete
     }
     parameters{
-        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+        string(name: 'PERSON', defaultValue: '', description: 'Who should I say hello to?')
         text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
         booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
         choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
