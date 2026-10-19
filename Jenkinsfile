@@ -10,6 +10,17 @@ pipeline{
         Course = 'DevOps'
         Topic = 'Jenkins'
     }
+    options{
+        timeout(time: 10, unit: 'MINUTES') // pipeline will be aborted if it takes more than 10 minutes to complete
+        disableConcurrentBuilds() // if any build is running then next build will be in queue and will wait for previous build to complete
+    }
+    parameters{
+        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+        text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
+        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
+        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+        password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+    }
     stages{
         stage('Build'){
             steps{
@@ -17,6 +28,7 @@ pipeline{
                     sh """
                         echo 'Building Job'
                         echo 'Course name is ${Course}'
+                        echo 'hi ${params.PERSON}' // accessing parameter value
                     """
                 }
                 
@@ -50,6 +62,9 @@ pipeline{
         }
         failure{ // if any stage fails then execute this block
             echo 'failed'
+        }
+        aborted{ // if any stage is aborted then execute this block
+            echo 'aborted'
         }
     }
 }
