@@ -24,3 +24,8 @@ lvextend -L +15G /dev/mapper/RootVG-rootVol
 lvextend -L +15G /dev/mapper/RootVG-homeVol
 xfs_growfs /
 xfs_growfs /home
+
+## triggers
+
+GITHUB SCM Trigger
+http://<domain/ip>:8080/github-webhook/
