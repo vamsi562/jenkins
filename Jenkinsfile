@@ -1,6 +1,6 @@
 pipeline{
     // agent any - it will run job in master
-    agent node{
+    agent{
         label 'agent-1'
     } // asking jenkins to run pipeline in agent-1 node
     stages{
