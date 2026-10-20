@@ -22,3 +22,5 @@
 
 - stage view -> show piplelines in stages
 - Pipeline Utility Steps
+- aws steps
+- sonarqube scanner
