@@ -1,6 +1,6 @@
 # Jenkins Installation
 ```
-        # Add the clean repo configuration file
+    # Add the clean repo configuration file
     sudo curl -o /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/rpm-stable/jenkins.repo
 
     # Import the official Jenkins signing key
@@ -19,13 +19,22 @@
 
 ```
 
-growpart /dev/nvme0n1 4
-lvextend -L +15G /dev/mapper/RootVG-rootVol
-lvextend -L +15G /dev/mapper/RootVG-homeVol
-xfs_growfs /
-xfs_growfs /home
+sudo growpart /dev/nvme0n1 4
+sudo lvextend -L +15G /dev/mapper/RootVG-rootVol
+sudo lvextend -L +15G /dev/mapper/RootVG-homeVol
+sudo xfs_growfs /
+sudo xfs_growfs /home
 
 ## triggers
 
 GITHUB SCM Trigger
 http://<domain/ip>:8080/github-webhook/
+
+
+## docker
+dnf -y install dnf-plugins-core
+dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+systemctl start docker
+systemctl enable docker
+usermod -aG docker ec2-user
